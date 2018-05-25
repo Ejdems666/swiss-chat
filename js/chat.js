@@ -56,17 +56,17 @@ $socket.on('joinMessage', function (messages) {
 });
 //ON UPDATE USERS LIST MESSAGE RECEIVED
 $socket.on('updateUserList', function (users) {
-
-    var usersList = jQuery('<ul></ul>');
+    console.log(users);
+    var usersList = $('<ul></ul>');
 
     //TODO
     //LOOP IN USERS LIST & DISPLAY IT
     users.forEach(function (user)
     {
-        usersList.append(jQuery('<li></li>').text(user.nickname));
+        usersList.append($('<li></li>').text(user.nickname));
     });
 
-    $('#users').replaceWith(usersList);
+    $('#users').html(usersList);
 
 });
 
