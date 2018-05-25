@@ -19,10 +19,14 @@ ul, li
 
 .message-right {
     text-align: right;
+    background: lightgoldenrodyellow;
+    display: block;
+    padding: 2px;
 }
 
 .message-center {
     text-align: center;
+    font-size: 13px;
 }
 
 button {
@@ -86,6 +90,7 @@ button {
     width: 260px;
     height: 100vh;
     background-color: #2a2d3e;
+    border-right: black 1px solid;
 }
 
 .chat-sidebar h3 {
@@ -104,6 +109,12 @@ button {
     border-radius: 5px;
     padding: 10px;
     margin: 10px;
+}
+.chat-sidebar li span {
+    float: right;
+    padding: 2px;
+    border-radius: 100%;
+    border: 1px solid gray;
 }
 
 .chat-main {
@@ -134,12 +145,14 @@ button {
 
 .chat-footer form * {
     margin-right: 10px;
+    font-size: 15px;
 }
 
 .chat-footer input {
     border: none;
     padding: 10px;
     flex-grow: 1;
+
 }
 
 .chat-messages {
@@ -207,4 +220,33 @@ button {
     .chat-footer button {
         margin-right: 0px;
     }
+}
+
+#color-picker {
+    position: absolute;
+    bottom: 20px;
+}
+
+#color-picker li{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin: 8px;
+}
+
+#red {
+    background: #E53935;
+}
+#black {
+    background: black;
+}
+#blue {
+    background: #2196F3;
+}
+#white {
+    background: white;
+}
+#green {
+    background: #81C784;
 }

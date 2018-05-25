@@ -6,7 +6,7 @@ var $language;
 
 //ON ADMIN MESSAGE RECEIVED
 $socket.on('adminMessage', function (messages) {
-    var li = $('<li class="message-left"></li>');
+    var li = $('<li class="message-center"></li>');
     li.text('Server: ' + messages[$language]);
 
     //DISPLAY IT
@@ -51,7 +51,7 @@ $socket.on('updateUserList', function (users) {
     var usersList = $('<ul></ul>');
 
     users.forEach(function (user) {
-        usersList.append($('<li></li>').text(user.nickname));
+        usersList.append($('<li></li>').html(user.nickname+" <span>"+user.language.slice(3,5)+"</span>"));
     });
 
     $('#users').html(usersList);
@@ -70,6 +70,16 @@ $(document).ready(function () {
         e.preventDefault();
         sendMessage();
     });
+
+    $('#color-picker li').click(function (e) {
+        var color = $(e.target).attr('data-color');
+        if (color === 'white') {
+            $('.chat-sidebar h3').css('color', 'black');
+        } else {
+            $('.chat-sidebar h3').css('color', 'white');
+        }
+        $('.chat-sidebar').css('background', color);
+    })
 });
 
 //SEND MESSAGE METHOD
