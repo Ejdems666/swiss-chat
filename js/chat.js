@@ -8,7 +8,7 @@ var $language;
 $socket.on('adminMessage', function (messages) {
     //TODO
     //RETRIEVE THE CORRECT LANGUAGE MESSAGE
-    var li = jQuery('<li class="left"></li>');
+    var li = jQuery('<li class="message-left"></li>');
     li.text('Admin : '+messages[$language]);
 
     //DISPLAY IT
@@ -17,14 +17,14 @@ $socket.on('adminMessage', function (messages) {
 
 //ON NEW MESSAGE RECEIVED
 $socket.on('newMessage', function (messages, from) {
-    var li;
+    var li = $('<li></li>');
 
     //TODO
     //TEST IF OWN MESSAGE
     if(from != $nickname)
-        li = jQuery('<li class="left"></li>');
+        li.addClass('message-left');
     else
-        li = jQuery('<li class="right"></li>');
+        li.addClass('message-right');
 
     //RETRIEVE THE CORRECT LANGUAGE MESSAGE
     li.text(from+' : '+messages[$language]);
@@ -38,7 +38,7 @@ $socket.on('newMessage', function (messages, from) {
 $socket.on('leftMessage', function (messages) {
     //TODO
     //RETRIEVE THE CORRECT LANGUAGE MESSAGE
-    var li = jQuery('<li class="right red"></li>');
+    var li = jQuery('<li class="message-center red"></li>');
     li.text('Admin : '+messages[$language]);
 
     //DISPLAY IT
@@ -48,7 +48,7 @@ $socket.on('leftMessage', function (messages) {
 $socket.on('joinMessage', function (messages) {
     //TODO
     //RETRIEVE THE CORRECT LANGUAGE MESSAGE
-    var li = jQuery('<li class="right green"></li>');
+    var li = jQuery('<li class="message-center green"></li>');
     li.text('Admin : '+messages[$language]);
 
     //DISPLAY IT

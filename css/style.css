@@ -13,7 +13,17 @@ ul, li
     list-style-type: none;
 }
 
+.message-left {
+    text-align: left;
+}
 
+.message-right {
+    text-align: right;
+}
+
+.message-center {
+    text-align: center;
+}
 
 button {
     border: none;
