@@ -6,10 +6,8 @@ var $language;
 
 //ON ADMIN MESSAGE RECEIVED
 $socket.on('adminMessage', function (messages) {
-    //TODO
-    //RETRIEVE THE CORRECT LANGUAGE MESSAGE
-    var li = jQuery('<li class="message-left"></li>');
-    li.text('Admin : '+messages[$language]);
+    var li = $('<li class="message-left"></li>');
+    li.text('Server: ' + messages[$language]);
 
     //DISPLAY IT
     $('#messages').append(li);
@@ -19,15 +17,13 @@ $socket.on('adminMessage', function (messages) {
 $socket.on('newMessage', function (messages, from) {
     var li = $('<li></li>');
 
-    //TODO
-    //TEST IF OWN MESSAGE
-    if(from != $nickname)
+    if (from !== $nickname)
         li.addClass('message-left');
     else
         li.addClass('message-right');
 
     //RETRIEVE THE CORRECT LANGUAGE MESSAGE
-    li.text(from+' : '+messages[$language]);
+    li.text(from + ' : ' + messages[$language]);
 
     //DISPLAY IT
     $('#messages').append(li);
@@ -36,33 +32,25 @@ $socket.on('newMessage', function (messages, from) {
 
 //ON LEFT MESSAGE RECEIVED
 $socket.on('leftMessage', function (messages) {
-    //TODO
-    //RETRIEVE THE CORRECT LANGUAGE MESSAGE
-    var li = jQuery('<li class="message-center red"></li>');
-    li.text('Admin : '+messages[$language]);
+    var li = $('<li class="message-center red"></li>');
+    li.text('Server: ' + messages[$language]);
 
     //DISPLAY IT
     $('#messages').append(li);
 });
 //ON JOIN MESSAGE RECEIVED
 $socket.on('joinMessage', function (messages) {
-    //TODO
-    //RETRIEVE THE CORRECT LANGUAGE MESSAGE
-    var li = jQuery('<li class="message-center green"></li>');
-    li.text('Admin : '+messages[$language]);
+    var li = $('<li class="message-center green"></li>');
+    li.text('Server : ' + messages[$language]);
 
     //DISPLAY IT
     $('#messages').append(li);
 });
 //ON UPDATE USERS LIST MESSAGE RECEIVED
 $socket.on('updateUserList', function (users) {
-    console.log(users);
     var usersList = $('<ul></ul>');
 
-    //TODO
-    //LOOP IN USERS LIST & DISPLAY IT
-    users.forEach(function (user)
-    {
+    users.forEach(function (user) {
         usersList.append($('<li></li>').text(user.nickname));
     });
 
@@ -70,18 +58,13 @@ $socket.on('updateUserList', function (users) {
 
 });
 
-$(document).ready(function ()
-{
-    //TODO
-    //STORE THE URL VALUES
+$(document).ready(function () {
     var url = new URL(window.location.href);
     $nickname = url.searchParams.get('nickname');
     $room = url.searchParams.get('room');
     $language = url.searchParams.get('language');
 
-    //TODO
-    //JOIN THE ROOM
-    $socket.emit('join',$nickname, $room, $language);
+    $socket.emit('join', $nickname, $room, $language);
 
     $('#message-form').submit(function (e) {
         e.preventDefault();
@@ -90,16 +73,14 @@ $(document).ready(function ()
 });
 
 //SEND MESSAGE METHOD
-function sendMessage()
-{
-    //TODO
-    //STORE MESSAGE VALUE
-    var $message = $('input[name="message"]').val();
+function sendMessage() {
+    var $input = $('input[name="message"]');
+    var $message = $input.val();
 
     if ($message.length > 0) {
 
         //RESET MESSAGE INPUT
-        $('input[name="message"]').val('');
+        $input.val('');
         //SEND MESSAGE TO SOCKET :
         //PARAMS : methodName, nickname, room, language, message
         $socket.emit('sendMessage', $nickname, $room, $language, $message);
